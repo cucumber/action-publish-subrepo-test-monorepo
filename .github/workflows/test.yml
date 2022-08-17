@@ -13,7 +13,7 @@ jobs:
       - uses: actions/checkout@v3
       - name: update the 'a-subfolder' folder with something unique
         run: echo ${{ github.run_number }} >> a-subfolder/a-file
-      - name: commit changes and push
+      - name: commit some changes to monorepo and push
         run: |
           git config --global user.name 'Monorepo user'
           git config --global user.email 'monorepo-user@noreply.github.com'
@@ -22,6 +22,6 @@ jobs:
           git push origin
       - uses: cucumber/action-publish-subrepo@main
         with:
-          working-directory: "php"
+          working-directory: "a-subfolder"
       - name: check that the subrepo contains our update from step 2
         run: echo "TODO"
