@@ -4,6 +4,7 @@ on:
   repository_dispatch:
     types: [action-updated-time-to-test]
   workflow_dispatch:
+  push:
 
 jobs:
   build:
