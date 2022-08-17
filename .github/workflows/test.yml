@@ -11,8 +11,15 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - name: update the 'php' folder with something unique
-        run: echo "TODO"
+      - name: update the 'a-subfolder' folder with something unique
+        run: echo ${{ github.run_number }} >> a-subfolder/a-file
+      - name: commit changes and push
+        run: |
+          git config --global user.name 'Monorepo user'
+          git config --global user.email 'monorepo-user@noreply.github.com'
+          git add a-subfolder/a-file
+          git commit -m "Update monorepo file in GitHub Actions run number ${{ github.run_number }}"
+          git push origin
       - uses: cucumber/action-publish-subrepo@main
         with:
           working-directory: "php"
