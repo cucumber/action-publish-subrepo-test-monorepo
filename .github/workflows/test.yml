@@ -8,4 +8,4 @@ on:
 
 jobs:
   publish-subrepo:
-    uses: cucumber/action-publish-subrepo/test.yaml@main
+    uses: cucumber/action-publish-subrepo/.github/workflows/test.yaml@main
