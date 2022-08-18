@@ -13,8 +13,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: update the 'a-subfolder' folder with something unique
-        run: echo ${{ github.run_number }} >> a-subfolder/a-file
-      - name: commit some changes to monorepo and push
+        run: |
+          echo ${{ github.run_number }} > a-subfolder/a-file
+      - name: commit changes to monorepo and push
         run: |
           git config --global user.name 'Monorepo user'
           git config --global user.email 'monorepo-user@noreply.github.com'
@@ -25,4 +26,6 @@ jobs:
         with:
           working-directory: "a-subfolder"
       - name: check that the subrepo contains our update from step 2
-        run: echo "TODO"
+        run: |
+          body=$(curl --silent -H "Accept: application/vnd.github+json" https://api.github.com/repos/cucumber/action-publish-subrepo-test-monorepo/contents/a-subfolder/a-file | jq --raw-output '.content' | base64 -d)
+          [[ "$body" == ${{ github.run_number }}]]
