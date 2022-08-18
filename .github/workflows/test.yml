@@ -28,4 +28,4 @@ jobs:
       - name: check that the subrepo contains our update from step 2
         run: |
           body=$(curl --silent -H "Accept: application/vnd.github+json" https://api.github.com/repos/cucumber/action-publish-subrepo-test-monorepo/contents/a-subfolder/a-file | jq --raw-output '.content' | base64 -d)
-          [[ "$body" == ${{ github.run_number }}]]
+          [[ "$body" == ${{ github.run_number }} ]]
