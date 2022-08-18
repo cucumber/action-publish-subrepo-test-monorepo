@@ -1,4 +1,4 @@
-name: Publish php subrepo/mirror
+name: Publish subrepo
 
 on:
   repository_dispatch:
