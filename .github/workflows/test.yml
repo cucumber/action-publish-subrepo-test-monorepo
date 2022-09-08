@@ -12,7 +12,7 @@ on:
 
 jobs:
   publish-subrepo:
-    uses: cucumber/action-publish-subrepo/.github/workflows/test.yaml@${{ inputs.branch }}
+    uses: cucumber/action-publish-subrepo/.github/workflows/test.yaml@main
     with:
       branch: ${{ inputs.branch }}
     secrets:
