@@ -13,5 +13,7 @@ on:
 jobs:
   publish-subrepo:
     uses: cucumber/action-publish-subrepo/.github/workflows/test.yaml@${{ inputs.branch }}
+    with:
+      branch: ${{ inputs.branch }}
     secrets:
       PUSH_TOKEN: ${{ secrets.PUSH_TOKEN }}
