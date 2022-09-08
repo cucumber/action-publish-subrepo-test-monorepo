@@ -1,13 +1,17 @@
 name: Publish subrepo
 
 on:
-  repository_dispatch:
-    types: [push]
   workflow_dispatch:
+    inputs:
+      branch:
+        description: "Git branch of the action to be tested"
+        default: "main"
+        required: false
+        type: string
   push:
 
 jobs:
   publish-subrepo:
-    uses: cucumber/action-publish-subrepo/.github/workflows/test.yaml@main
+    uses: cucumber/action-publish-subrepo/.github/workflows/test.yaml@${{ inputs.branch }}
     secrets:
       PUSH_TOKEN: ${{ secrets.PUSH_TOKEN }}
